@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+
+    "recipe": {
+      "id": "/recipe",
+      "title": "Recipe",
+      "description": "A recipe website",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "Recipe ID",
+          "type": "integer"
+        },
+        "recipe": {
+          "description": "Main title of the blog recipe",
+          "type": "string"
+        },
+        "diet": {
+          "description": "Is it vegetarian, vegan, etc?",
+          "type": "string"
+        },
+        "recipetext": {
+          "description": "Body text of the blog recipe",
+          "type": "string"
+        },
+        "image": {
+          "description": "URL for main image to show in recipe",
+          "type": "string",
+          "format": "uri"
+        },
+        "userID": {
+          "description": "User ID of the recipe author",
+          "type": "integer",
+          "minimum": 0
+        },
+        "mealtype": {
+          "description": "Breakfast, Lunch, Dinner, etc",
+          "type": "string"
+        }
+      },
+      "required": ["ID", "diet", "recipe", "userID"],
+      "additionalProperties": false
+    },
+
+    "recipeView": {
+      "$id": "#recipeView",
+      "title": "Recipe View",
+      "description": "Recipes visible to everyone.",
+      "type": "object",
+      "properties": {
+        "recipe": {
+          "description": "recipe",
+          "type": "string"
+        },
+        "diet": {
+          "description": "diet",
+          "type": "string"
+        },
+        "recipetext": {
+          "description": "recipetext",
+          "type": "string"
+        },
+        "image": {
+          "description": "image",
+          "type": "string",
+          "format": "uri"
+        },
+        "userID": {
+          "description": "UserID",
+          "type": "integer",
+          "minimum": 0
+        },
+        "mealtype": {
+          "description": "mealtype",
+          "type": "string"
+        }
+      }
+    },
+
+    "recipeList": {
+      "$id": "#recipeList",
+      "title": "List of Recipes",
+      "description": "List of all recipes visible to admin only.",
+      "type": "array",
+      "items": {"$ref": "#/definitions/recipeView"}
+    },
+
+    "recipeUpdate": {
+      "$id": "#recipeUpdate",
+      "title": "Recipe Update",
+      "description": "Updating a recipe.",
+      "type": "object",
+      "properties": {
+        "recipe": {
+          "description": "recipe",
+          "type": "string"
+        },
+        "diet": {
+          "description": "diet",
+          "type": "string"
+        },
+        "recipetext": {
+          "description": "recipetext",
+          "type": "string"
+        },
+        "image": {
+          "description": "image",
+          "type": "string",
+          "format": "uri"
+        },
+        "mealtype": {
+          "description": "mealtype",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "recipeUpdated": {
+      "$id": "#recipeUpdated",
+      "title": "Recipe Updated",
+      "description": "Confirmation of a successful user update/creation",
+      "type": "object",
+      "properties": {
+        "updated": {
+          "description": "Boolean indicator of success",
+          "type": "boolean"
+        },
+        "link": {
+          "description": "Path to retrieve recipe record",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+      
+      
+    "recipeDeleted": {
+      "$id": "#recipeDeleted",
+      "title": "Recipe Deleted",
+      "description": "Confirmation of a successful deletion",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "ID of the updated recipe",
+          "type": "integer"
+        },
+        "deleted": {
+          "description": "Boolean indicator of success",
+          "type": "boolean"          
+        }
+      }
+    }
+  }
+}
+
+
